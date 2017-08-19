@@ -1,2 +1,9 @@
 body {
   background: white; }
+
+a {
+  color: white;
+  text-decoration: none;
+  /* no underline */ }
+  a:hover {
+    color: black; }

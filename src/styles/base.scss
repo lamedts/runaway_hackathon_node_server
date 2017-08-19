@@ -3,3 +3,12 @@ $bg-color: white;
 body {
  background: $bg-color;
 }
+
+a {
+  color: white;
+  text-decoration: none; /* no underline */
+
+  &:hover {
+  	color: black;
+  }
+}

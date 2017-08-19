@@ -1,3 +1,18 @@
 <% include partials/header  %>
-	<h1>Hello World</h1>
-<% include partials/footer  %>	
+  <div class="ui grid">
+    <div class="four wide column">
+    <% include partials/sidebar  %>
+    </div>
+    <div class="twelve wide column">
+      <div class="ui form">
+        <div class="field">
+          <input type="text" name="first-name" placeholder="First name">
+        </div>
+        <div class="field">
+          <textarea placeholder="Some example text..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% include partials/footer  %>  

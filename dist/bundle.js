@@ -73,6 +73,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_base_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_base_scss__);
 
 
+// Semantic Cards JS
+$('.special.cards .image').dimmer({
+  on: 'hover'
+});
+
 console.log('test');
 
 
