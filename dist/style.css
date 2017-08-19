@@ -1,11 +1,14 @@
 body {
   background: white; }
 
-a {
+#sidebar-card .check-detail:hover a {
+  color: black; }
+
+#sidebar-card .dimmer a {
   color: white;
   text-decoration: none;
   /* no underline */ }
-  a:hover {
+  #sidebar-card .dimmer a:hover {
     color: black; }
-  a:active {
+  #sidebar-card .dimmer a:active {
     color: black; }

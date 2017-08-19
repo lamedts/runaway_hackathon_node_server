@@ -63,22 +63,24 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_base_scss__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_base_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_base_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_main_scss__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_main_scss__);
 
 console.log(`Base Js connected`);
 
-// Semantic Cards JS
+// Semantic Sidebar Hover Cards JS
 $('.special.cards .image').dimmer({
   on: 'hover'
 });
 
+// View Details and open modal
 $('.vendorDetailBtn').click(function() {
 	// Show Modal
 	console.log(`Click and open modal`);
@@ -87,14 +89,27 @@ $('.vendorDetailBtn').click(function() {
 	  .modal('show');
 })
 
-console.log('test');
+// Select Vender and change button color and value from "Select" to "Selected"
+$(".vendorSelectBtn").click(function() {
+	var $anchor = $(this)
+	if ($anchor.hasClass('orange')) {
+		$anchor.removeClass('orange inverted').addClass('green').text('Selected');
+	} else if ($anchor.hasClass('green')) {
+		$anchor.removeClass('green').addClass('orange inverted').text('Select');
+	} else {
+		return
+	}
+})
+
 
 
 /***/ }),
-/* 1 */
+
+/***/ 7:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
-/******/ ]);
+
+/******/ });

@@ -1,0 +1,26 @@
+#sidebar-card {
+  // Semantic Sidebar Hover
+  .check-detail {
+    &:hover {
+      a {
+        color: black;
+      }
+    }
+  }
+
+   // Semantic Sidebar Hover
+  .dimmer {
+    a {
+      color: white;
+      text-decoration: none; /* no underline */
+
+      &:hover {
+       color: black;
+      }
+
+      &:active {
+       color: black;
+      }
+    }
+  }  
+}
