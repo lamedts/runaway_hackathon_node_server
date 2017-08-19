@@ -7,3 +7,5 @@ a {
   /* no underline */ }
   a:hover {
     color: black; }
+  a:active {
+    color: black; }

@@ -72,11 +72,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_base_scss__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_base_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_base_scss__);
 
+console.log(`Base Js connected`);
 
 // Semantic Cards JS
 $('.special.cards .image').dimmer({
   on: 'hover'
 });
+
+$('.vendorDetailBtn').click(function() {
+	// Show Modal
+	console.log(`Click and open modal`);
+
+	$('.ui.modal.vendorDetail')
+	  .modal('show');
+})
 
 console.log('test');
 
