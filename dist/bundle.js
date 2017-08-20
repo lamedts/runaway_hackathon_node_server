@@ -88,8 +88,7 @@ $('.vendorDetailBtn').click(function() {
 	// Show Modal
 	console.log(`Click and open modal`);
 
-	$('.ui.modal.vendorDetail')
-	  .modal('show');
+	$('.ui.modal.vendorDetail').modal('show');
 })
 
 // Select Vender and change button color and value from "Select" to "Selected"

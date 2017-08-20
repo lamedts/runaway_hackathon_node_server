@@ -1,13 +1,4 @@
 <% include partials/header  %>
-  <% if (hasLoadedIframe) {  %>
-    <div class="ui grid">
-      <div class="sixteen wide column">
-        <div>
-          <%- vendorCompareIframe %>
-        </div>
-      </div>
-    </div>
-  <% } %>
   <div class="ui grid">
     <div class="four wide column">
     <% if (hasLoaded) { %>
@@ -24,5 +15,14 @@
     </div>
     <% } %>
   </div>
-</div>
+<% if (hasLoadedIframe) {  %>
+  <div class="ui grid">
+    <div class="sixteen wide column">
+    <h1 class="ui header">Suggested Vendors</h1>
+      <div>
+        <%- vendorCompareIframe %>
+      </div>
+    </div>
+  </div>
+<% } %>
 <% include partials/footer  %>  
