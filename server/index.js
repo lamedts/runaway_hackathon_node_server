@@ -14,7 +14,7 @@ const SEMANTIC_UI_PATH = path.join(__dirname, '..', 'semantic');
 // Seed Data
 let mockData = require('../seeds/mockResponse.json');
 let testData = require('../seeds/testData.json');
-let mock_vendor_no_arr = ['Vendor 14', 'Vendor 7'];
+let mock_vendor_no_arr_json = array_to_json(['Vendor 14', 'Vendor 7'])
 
 
 app.set('port', PORT);
@@ -34,7 +34,9 @@ app.use(express.static(SEMANTIC_UI_PATH));
 // Setting local variables
 app.locals.hasLoaded = false;
 app.locals.defaultLoaded = true;
-app.locals.newOrder = null; 
+app.locals.newOrder = null;
+app.locals.hasLoadedIframe = false;
+app.locals.vendorCompareIframe = false; 
 
 
 // Pass Mock Data For Now
@@ -50,11 +52,21 @@ app.get('/uploadOrder', (req, res) => {
     app.locals.hasLoaded = true;
 
     if (!serverResult) {
-      res.render('index', {serverResult: mockData, newOrder: newOrder});
-      serviceGetIframe(mock_vendor_no_arr);
+      // Render page with new order and suggestion list of vendors
+      
+      // Get the iframe work vendors comparison
+      serviceGetIframe(mock_vendor_no_arr_json, (err, body) => {
+        app.locals.hasLoadedIframe = true;
+        res.render('index', {serverResult: mockData, newOrder: newOrder, vendorCompareIframe: body});
+      });
     } else {
-      res.render('index', {serverResult: serverResult, newOrder: newOrder});
-      serviceGetIframe(mock_vendor_no_arr);
+      // Render page with new order and suggestion list of vendors
+      
+      // Get the iframe work vendors comparison
+      serviceGetIframe(mock_vendor_no_arr_json, (err, body) => {
+        app.locals.hasLoadedIframe = true; 
+        res.render('index', {serverResult: serverResult, newOrder: newOrder, vendorCompareIframe: body});
+      });
     }
   })
 })
@@ -67,11 +79,20 @@ function getOneTestData() {
 
 // POST /plot
 // @params vendor_number_arr: [ Vendor_No ]
-function serviceGetIframe(vendor_no_arr) {
-  request.post(PY_SERVER_PATH_PLOT, vendor_no_arr, (err, response, body) => {
-      console.log(err, body)
-  });
+function serviceGetIframe(data, callback) {
+  console.log(`CALL ${PY_SERVER_PATH_PLOT}`)
+  let options = {
+    method: 'post',
+    body: data,
+    json: true,
+    url: PY_SERVER_PATH_PLOT
+  }
+  request(options, (err, res, body) => {
+    console.log(`HAS CALLED AND GOT RESPONDED: ${body}`) 
+    callback(err, body); 
+  })
 }
+
 
 // /search/id
 function serviceAnalyzeOrder(callback) {
@@ -80,6 +101,8 @@ function serviceAnalyzeOrder(callback) {
   let pyServerPath = `${PY_SERVER_PATH_SEARCH}/${newOrderId}`;
   console.log(`NEW ORDER: ${newOrderId}`);
   console.log(`CALL: ${pyServerPath}`);
+
+  // CALL SEARCH
   request(`${pyServerPath}`, (error, response, body) => {
     if (!error && response.statusCode == 200) {
       console.log(`${body}`);
@@ -90,6 +113,14 @@ function serviceAnalyzeOrder(callback) {
       callback(null, newOrder);
     }
   })
+}
+
+function getVendorIdArr(arr) {
+  return arr.map(i => i.Vendor_No);
+}
+
+function array_to_json(arr) {
+  return JSON.stringify(arr);
 }
 
 app.listen(PORT, function () {
