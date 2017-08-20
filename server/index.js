@@ -51,19 +51,22 @@ app.get('/uploadOrder', (req, res) => {
     app.locals.defaultLoaded = false;
     app.locals.hasLoaded = true;
 
+    // Default List
     if (!serverResult) {
-      // Render page with new order and suggestion list of vendors
-      
       // Get the iframe work vendors comparison
       serviceGetIframe(mock_vendor_no_arr_json, (err, body) => {
         app.locals.hasLoadedIframe = true;
         res.render('index', {serverResult: mockData, newOrder: newOrder, vendorCompareIframe: body});
       });
+    // Dynamic List
     } else {
       // Render page with new order and suggestion list of vendors
-      
       // Get the iframe work vendors comparison
-      serviceGetIframe(mock_vendor_no_arr_json, (err, body) => {
+      let vendor_no_arr_json = getVendorIdArr(serverResult);
+      vendor_no_arr_json = array_to_json(vendor_no_arr_json);
+      console.log(`DEBUG`,vendor_no_arr_json)
+      // mock_vendor_no_arr_json
+      serviceGetIframe(vendor_no_arr_json, (err, body) => {
         app.locals.hasLoadedIframe = true; 
         res.render('index', {serverResult: serverResult, newOrder: newOrder, vendorCompareIframe: body});
       });
@@ -106,6 +109,9 @@ function serviceAnalyzeOrder(callback) {
   request(`${pyServerPath}`, (error, response, body) => {
     if (!error && response.statusCode == 200) {
       console.log(`${body}`);
+
+      // body is the data coming back from /search
+      console.log(body)
       body = JSON.parse(body);
       callback(body, newOrder);
     } else {
