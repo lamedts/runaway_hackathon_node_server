@@ -1,14 +1,14 @@
 <div class="item">
   <div class="image">
-    <img src="/images/img1/140149599.jpg">
+    <img src="/images/img1/<%=item["Unique_No"]%>.jpg">
   </div>
   <div class="content">
-    <a class="header">UK1004</a>
+    <a class="header"><%= item.Main_Fabric_Cd %></a>
     <div class="meta">
       <span>Fabric Description</span>
     </div>
     <div class="description">
-      <p>180GM COTTON JERSEY (NK1005 K1002)</p>
+      <p><%=item.Main_Fabric_Desc%></p>
     </div>
     
     <div class="divider ui"></div> 
@@ -17,7 +17,7 @@
       <span>Style Description</span>
     </div>
     <div class="description">
-      <p>BB WHT MONKEYAROUND white ss knit tee</p>
+      <p><%= item.StyleDescription%></p>
     </div>
   </div>
 </div>

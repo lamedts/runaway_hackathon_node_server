@@ -1,0 +1,9 @@
+<div class="ui items">
+  <% for (var i = 0; i < data.items.length; i++) { %>
+ 	<%- include("vendorItem", {item: data.items[i]})  %>
+  <% } %>
+</div>
+
+<div class="six wide column">
+  	<%- include("vendorList", {item: vendor})%>
+  </div>

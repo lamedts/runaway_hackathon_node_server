@@ -1,6 +1,6 @@
 <!-- Factory Header -->
-<div class="ui large header">Vendor 14</div>
- <p>Factory 2.0</p>
+<div class="ui large header"><%= vendor.Vendor_No %></div>
+ <p>Country: <%= vendor.Country_Cd %> </p>
 
  <!-- Dynamically give vendor its data -->
 <div class="ui segment">
@@ -15,8 +15,12 @@
 <!--  -->
 
 <!-- Later Pass Data to Item -->
-<div class="ui items">
-  <% include vendorItem  %>
-  <% include vendorItem  %>
-  <% include vendorItem  %>
-</div>
+
+<% vendor.items.forEach(function(item) { %>
+	<div class="ui items">
+  		<%- include("vendorItem", {item: item}) %>
+	</div>
+<% })  %>
+
+
+

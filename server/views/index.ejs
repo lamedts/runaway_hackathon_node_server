@@ -1,14 +1,19 @@
 <% include partials/header  %>
   <div class="ui grid">
     <div class="four wide column">
-    <% include partials/sidebarCard  %>
+    <% if (hasLoaded) { %>
+       <%- include("partials/sidebarCard", {newOrder: newOrder})  %>
+    <% } else { %>
+      <% include partials/defaultOrder %>
+    <% } %>
     </div>
-    <div class="six wide column">
-      <% include partials/vendorList %>
+    <% if (hasLoaded) { %>
+    <%- include("partials/loadedVendor", { vendors: serverResult } ) %>
+    <% } else if (defaultLoaded) { %>
+    <div class="twelve wide column">
+      <% include partials/defaultVendor %>
     </div>
-    <div class="six wide column">
-      <% include partials/vendorList %>
-    </div>
+    <% } %>
   </div>
 </div>
 <% include partials/footer  %>  

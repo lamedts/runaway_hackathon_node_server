@@ -1,0 +1,6 @@
+<!-- @param serverResult -->
+<%  vendors.forEach(function(vendor){ %>
+<div class="six wide column">
+  	<%- include("vendorList", {vendor: vendor}) %>
+</div>
+<% }) %>

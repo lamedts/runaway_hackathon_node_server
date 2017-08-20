@@ -1,4 +1,6 @@
 import './styles/main.scss';
+import './js/uploadOrder.js';
+
 console.log(`Base Js connected`);
 
 // Semantic Sidebar Hover Cards JS
@@ -26,4 +28,5 @@ $(".vendorSelectBtn").click(function() {
 		return
 	}
 })
+
 
